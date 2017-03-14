@@ -8,6 +8,9 @@ use Symfony\Component\Finder\Exception\AccessDeniedException;
 
 class Controller extends BaseController
 {
+    /**
+     * @return \Symfony\Component\Security\Core\Authorization\AuthorizationChecker
+     */
     public function getSecurityAuthorizationChecker()
     {
         return $this->container->get('security.authorization_checker');

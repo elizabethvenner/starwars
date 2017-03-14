@@ -68,6 +68,5 @@ class RegisterController extends Controller
         $token = new UsernamePasswordToken($user, null, $providerKey, $user->getRoles());
 
         $this->getSecurityTokenStorage()->setToken($token);
-
     }
 }
