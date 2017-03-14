@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>
+            {%-if block('title')-%}
+                {{ block('title')}} | Starwars Events
+            {%-else-%}
+                Events from a galaxy far far away
+            {%-endif-%}
+        </title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+            {% stylesheets
+                'bundles/Event/css/Event.css'
+                'bundles/Event/css/events.css'
+                'bundles/Event/css/main.css'
+                filter='cssrewrite'
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+    {% if app.session.flashBag.has('success') %}
+    <div class="alert alert-success">
+        {% for msg in app.session.flashBag.get('success') %}
+            {{ msg }}
+        {% endfor %}
+    </div>
+    {% endif %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

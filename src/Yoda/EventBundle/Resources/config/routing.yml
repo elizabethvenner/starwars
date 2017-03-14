@@ -1,0 +1,14 @@
+#event_homepage:
+#    path :     /
+#    defaults: { _controller: EventBundle:Default:index }
+
+
+EventBundle_event:
+    resource: "@EventBundle/Resources/config/routing/Event.yml"
+
+event_annotations:
+    resource: "@EventBundle/Controller"
+    type:     annotation
+
+
+
