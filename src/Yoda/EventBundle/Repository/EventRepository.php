@@ -26,4 +26,14 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->execute();
     }
+
+    public function getRecentlyUpdatedEvents()
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.updatedAt > :since')
+            ->setParameter('since', new \DateTime('24 hours ago'))
+            ->getQuery()
+            ->execute()
+            ;
+    }
 }
