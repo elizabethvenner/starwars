@@ -1,6 +1,8 @@
 <?php
 namespace Yoda\EventBundle\Reporting;
 
+use Doctrine\ORM\EntityManager;
+
 class EventReportManager
 {
 
