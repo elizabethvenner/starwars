@@ -216,6 +216,5 @@ class Event
         return $this->updatedAt;
     }
 
-
 }
 
