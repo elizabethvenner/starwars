@@ -1,0 +1,19 @@
+{% for event in events %}
+    <tr>
+        <td><a href="{{ path('event_show', { 'slug': event.slug }) }}">{{ event.id }}</a></td>
+        <td>{{ event.name }}</td>
+        <td>{% if event.time %}{{ event.time|date('Y-m-d H:i:s') }}{% endif %}</td>
+        <td>{{ event.location }}</td>
+        <td>{{ event.details }}</td>
+        <td>
+            <ul>
+                <li>
+                    <a href="{{ path('event_show', { 'slug': event.slug }) }}">show</a>
+                </li>
+                <li>
+                    <a href="{{ path('event_edit', { 'id': event.id }) }}">edit</a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+{% endfor %}
