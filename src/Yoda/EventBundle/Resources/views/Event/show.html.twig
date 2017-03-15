@@ -29,6 +29,22 @@
                 <th>Details</th>
                 <td>{{ event.details }}</td>
             </tr>
+            <tr>
+                <th>Attending</th>
+                <td>
+                    {{ event.attendees|length }}
+                    <ul class="users">
+                        {% for attendee in event.attendees %}
+                          <li>{{ attendee.username }}</li>
+                        {% else %}
+                          <li>We're cool! RSVP!</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ path('event_attend', {'id': event.id}) }}" class="btn btn-success btn-xs">
+                        I totally want to go!
+                    </a>
+                </td>
+            </tr>
         </tbody>
     </table>
 

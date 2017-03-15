@@ -2,6 +2,7 @@
 
 namespace Yoda\EventBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Yoda\UserBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -48,6 +49,18 @@ class Event
     private $details;
 
     /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Yoda\UserBundle\Entity\User",
      *     inversedBy="events"
      * )
@@ -62,16 +75,17 @@ class Event
     protected $slug;
 
     /**
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
+     * @ORM\ManyToMany(targetEntity="Yoda\UserBundle\Entity\User")
+     * @ORM\JoinTable(
+     *     joinColumns={@ORM\JoinColumn(onDelete="CASCADE")},
+     *     inverseJoinColumns={@ORM\JoinColumn(onDelete="CASCADE")}
+     *     )
      */
-    private $createdAt;
+    protected $attendees;
 
-    /**
-     * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
+    public function __construct(){
+        $this->attendees = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -214,6 +228,11 @@ class Event
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function getAttendees()
+    {
+        return $this->attendees;
     }
 
 }
