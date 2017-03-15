@@ -3,11 +3,17 @@ namespace Yoda\EventBundle\Reporting;
 
 class EventReportManager
 {
-    public function getRecentlyUpdateReport()
-    {
-        $em = $this->getDoctrine()->getManager();
 
-        $events = $em->getRepository('EventBundle:Event')
+    private $em;
+
+    public function __construct($em)
+    {
+        $this->em = $em;
+    }
+    public function getRecentlyUpdatedReport()
+    {
+
+        $events = $this->em->getRepository('EventBundle:Event')
             ->getRecentlyUpdatedEvents();
 
         $rows = array();
