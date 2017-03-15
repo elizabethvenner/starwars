@@ -255,4 +255,9 @@ class User implements AdvancedUserInterface, Serializable
             $this->password,
             ) = unserialize($serialized);
     }
+
+    public function __toString()
+    {
+        return (string) $this->getUsername();
+    }
 }

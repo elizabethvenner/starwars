@@ -35,7 +35,7 @@
                     {{ event.attendees|length }}
                     <ul class="users">
                         {% for attendee in event.attendees %}
-                          <li>{{ attendee.username }}</li>
+                          <li>{{ attendee }}</li>
                         {% else %}
                           <li>We're cool! RSVP!</li>
                         {% endfor %}
