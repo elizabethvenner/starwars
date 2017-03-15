@@ -40,9 +40,15 @@
                           <li>We're cool! RSVP!</li>
                         {% endfor %}
                     </ul>
-                    <a href="{{ path('event_attend', {'id': event.id}) }}" class="btn btn-success btn-xs">
-                        I totally want to go!
-                    </a>
+                    {% if event.hasAttendee(app.user) %}
+                        <a href="{{ path('event_unattend', {'id': event.id}) }}" class="btn btn-warning btn-xs">
+                            Oh no! I can't go anymore!
+                        </a>
+                    {% else %}
+                        <a href="{{ path('event_attend', {'id': event.id}) }}" class="btn btn-success btn-xs">
+                            I totally want to go!
+                        </a>
+                    {% endif %}
                 </td>
             </tr>
         </tbody>

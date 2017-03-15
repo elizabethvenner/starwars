@@ -28,6 +28,6 @@ event_attend:
     path:     /{id}/attend
     defaults: {_controller: "EventBundle:Event:attend"}
 
-#event_unattend:
-#    path:     /{id}/unattend
-#    default: {_controller: "EventBundle:Event:unattend"}
+event_unattend:
+    path:     /{id}/unattend
+    defaults: {_controller: "EventBundle:Event:unattend"}
