@@ -23,6 +23,10 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
+    assets:
+        version: "5-return-of-the-jedi"
+        version_format: "%%s?v=%%s"
+#        base_url: //myfancycdn.com
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~

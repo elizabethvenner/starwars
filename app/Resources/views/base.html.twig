@@ -11,9 +11,15 @@
         </title>
         {% block stylesheets %}
             <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-            <link rel="stylesheet" href="{{ asset('bundles/Event/css/event.css') }}"/>
-            <link rel="stylesheet" href="{{ asset('bundles/Event/css/events.css') }}"/>
-            <link rel="stylesheet" href="{{ asset('bundles/Event/css/main.css') }}"/>
+            {% stylesheets
+                'bundles/Event/css/event.css'
+                'bundles/Event/css/events.css'
+                'bundles/Event/css/main.css'
+                filter='cssrewrite'
+                output='css/built/layout.css'
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
         {% endblock %}
     </head>
     <body>
