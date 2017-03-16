@@ -17,13 +17,13 @@ class LoadUsers implements FixtureInterface, ContainerAwareInterface, OrderedFix
     {
         $user = new User();
         $user->setUsername('darth');
-        $user->setPassword($this->encodePassword($user, 'darthpass'));
+        $user->setPlainPassword('darthpass');
         $user->setEmail('darth@deathstar.com');
         $manager->persist($user);
 
         $admin = new User();
         $admin->setUsername('wayne');
-        $admin->setPassword($this->encodePassword($user, 'waynepass'));
+        $admin->setPlainPassword('waynepass');
         $admin->setRoles(array('ROLE_ADMIN'));
         $admin->setEmail('wayne@deathstar.com');
         $manager->persist($admin);
@@ -41,9 +41,4 @@ class LoadUsers implements FixtureInterface, ContainerAwareInterface, OrderedFix
         return 10;
     }
 
-    private function encodePassword(User $user, $plainPassword)
-    {
-        $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
-        return $encoder->encodePassword($plainPassword, $user->getSalt());
-    }
 }
