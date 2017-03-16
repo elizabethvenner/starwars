@@ -19,13 +19,16 @@ $container->set('request', $request);
 
 $em = $container->get('doctrine')->getManager();
 
-$user = $em
+$wayne = $em
     ->getRepository('UserBundle:User')
-    ->findOneBy(array('username' => 'wayne'))
+    ->findOneByUsernameOrEmail('wayne')
     ;
+$wayne->setPlainPassword('new');
+$em->persist($wayne);
+$em->flush();
 
-foreach ($user->getEvents() as $event) {
-    var_dump($event->getName());
-}
+//foreach ($user->getEvents() as $event) {
+//    var_dump($event->getName());
+//}
 
 
